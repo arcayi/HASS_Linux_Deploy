@@ -32,7 +32,7 @@ python3 -m venv .
 . bin/activate
 pip config set global.index-url http://mirrors.ustc.edu.cn/pypi/web/simple
 pip config set global.trusted-host mirrors.ustc.edu.cn
-pip install -U pip ssl homeassistant
+pip install -U pip homeassistant
 hass -v
 
 cd $script_dir
