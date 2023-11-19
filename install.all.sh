@@ -38,3 +38,8 @@ hass -v
 cd $script_dir
 chmod a+x install_service.sh
 sudo ./install_service.sh
+
+# env
+cat <<EOF > /home/android/.bashrc
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+EOF

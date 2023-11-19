@@ -40,12 +40,12 @@ case "$1" in
         venv
         create_logdir
         # echo start-stop-daemon --start --pidfile $PID_FILE --exec $HASS_BIN -- $FLAGS 2>/dev/null
-        start-stop-daemon --start --pidfile $PID_FILE --name hass \
+        start-stop-daemon --start --pidfile $PID_FILE --name hass --chuid android \
             --make-pidfile --background \
             --exec $HASS_BIN -- $FLAGS 2>/dev/null
         ;;
     stop)
-        start-stop-daemon --stop --pidfile $PID_FILE --name hass --retry=TERM/30/KILL/5 
+        start-stop-daemon --stop --pidfile $PID_FILE --name hass --chuid android --retry=TERM/30/KILL/5 
         ;;
     restart)
         $0 stop
