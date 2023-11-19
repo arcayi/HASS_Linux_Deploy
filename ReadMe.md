@@ -10,7 +10,7 @@
         ```shell
         sudo apt update
         sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev
-        sudo apt install -y --no-install-recommends curl xz-utils
+        sudo apt install -y --no-install-recommends curl xz-utils git
         ```
     - python 3.11
         ```
@@ -20,7 +20,7 @@
         ./configure --enable-optimizations
         make -j `nproc`
         nohup make -j `nproc` > nohup.log 2>&1 &
-        make altinstall
+        sudo make altinstall
         sudo make bininstall
         python3 -V
         ```
@@ -46,7 +46,7 @@
         . bin/activate
         pip config set global.index-url http://mirrors.ustc.edu.cn/pypi/web/simple
         pip config set global.trusted-host mirrors.ustc.edu.cn
-        pip install -U pip homeassistant
+        pip install -U pip ssl homeassistant
         hass -v
         ```
 # setup Home Assistant as Service
