@@ -9,8 +9,8 @@ curl -O https://www.python.org/ftp/python/3.11.6/Python-3.11.6.tar.xz
 tar -xvf Python-3.11.6.tar.xz
 cd Python-3.11.6
 ./configure --enable-optimizations
-make -j `nproc`
-nohup make -j `nproc` > nohup.log 2>&1 &
+make -j $(nproc)
+nohup make -j $(nproc) > nohup.log 2>&1 &
 sudo make altinstall
 sudo make bininstall
 python3 -V
@@ -21,7 +21,7 @@ curl -O https://www.sqlite.org/2023/sqlite-autoconf-3440000.tar.gz
 tar xvfz sqlite-autoconf-3440000.tar.gz 
 cd sqlite-autoconf-3440000
 ./configure
-make -j `nproc`
+make -j $(nproc)
 sudo make install
 sqlite3 --version
 
