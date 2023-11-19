@@ -26,9 +26,9 @@
         ```
     - Sqlite, old version not supportted
         ```
-        sudo apt remove libsqlite3-0 libsqlite3-dev
-        cd ..
-        wget https://www.sqlite.org/2023/sqlite-autoconf-3440000.tar.gz
+        sudo apt remove -y libsqlite3-0 libsqlite3-dev
+        cd ~
+        curl -O https://www.sqlite.org/2023/sqlite-autoconf-3440000.tar.gz
         tar xvfz sqlite-autoconf-3440000.tar.gz 
         cd sqlite-autoconf-3440000
         ./configure
@@ -39,11 +39,13 @@
         ```
     3. install Home Assistant
         ```
-        cd ..
+        cd ~
         mkdir hass
         cd hass
         python3 -m venv .
         . bin/activate
+        pip config set global.index-url http://mirrors.ustc.edu.cn/pypi/web/simple
+        pip config set global.trusted-host mirrors.ustc.edu.cn
         pip install -U pip homeassistant
         hass -v
         ```
