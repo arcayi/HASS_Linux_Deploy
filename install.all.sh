@@ -40,7 +40,7 @@ chmod a+x install_service.sh
 sudo ./install_service.sh
 
 # env
-cat <<EOF > /home/android/.bashrc
+cat <<EOF >> /home/android/.bashrc
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/;/usr/lib/aarch64-linux-gnu/
 EOF
 
