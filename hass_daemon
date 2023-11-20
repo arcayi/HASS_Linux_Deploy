@@ -47,7 +47,8 @@ case "$1" in
             --exec ${HASS_BIN} -- ${FLAGS} 2>/dev/null
         ;;
     stop)
-        start-stop-daemon --stop --pidfile ${PID_FILE} --name hass --retry=TERM/30/KILL/5 
+        start-stop-daemon --stop --pidfile ${PID_FILE} --name hass \
+        --retry=TERM/30/KILL/5 
         ;;
     restart)
         $0 stop
