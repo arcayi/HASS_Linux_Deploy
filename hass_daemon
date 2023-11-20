@@ -10,10 +10,10 @@
 
 RUN_AS=android
 PATH=$PATH:/usr/sbin/
-HASS_BIN="/home/$$RUN_AS/hass/bin/hass"
+HASS_BIN="/home/$RUN_AS/hass/bin/hass"
 PID_FILE="/run/hass.pid"
 
-CONFIG_DIR="/home/$$RUN_AS/.homeassistant"
+CONFIG_DIR="/home/$RUN_AS/.homeassistant"
 LOG_DIR="/var/log/homeassistant"
 LOG_FILE="$LOG_DIR/home-assistant.log"
 # FLAGS="-v --config $CONFIG_DIR --pid-file $PID_FILE --log-file $LOG_FILE --daemon"
@@ -42,12 +42,12 @@ case "$1" in
         venv
         create_logdir
         # echo start-stop-daemon --start --pidfile $PID_FILE --exec $HASS_BIN -- $FLAGS 2>/dev/null
-        start-stop-daemon --start --pidfile $PID_FILE --name hass --chuid $$RUN_AS \
+        start-stop-daemon --start --pidfile $PID_FILE --name hass --chuid $RUN_AS \
             --make-pidfile --background \
             --exec $HASS_BIN -- $FLAGS 2>/dev/null
         ;;
     stop)
-        start-stop-daemon --stop --pidfile $PID_FILE --name hass --chuid $$RUN_AS --retry=TERM/30/KILL/5 
+        start-stop-daemon --stop --pidfile $PID_FILE --name hass --chuid $RUN_AS --retry=TERM/30/KILL/5 
         ;;
     restart)
         $0 stop
