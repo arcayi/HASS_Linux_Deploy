@@ -43,3 +43,6 @@ sudo ./install_service.sh
 cat <<EOF > /home/android/.bashrc
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
 EOF
+
+# service
+ln -sf /home/android/HASS_Linux_Deploy/hass_daemon /etc/init.d/

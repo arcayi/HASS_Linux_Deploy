@@ -24,7 +24,7 @@ FLAGS="-v --config $CONFIG_DIR --log-file $LOG_FILE "
 . /lib/lsb/init-functions
 
 venv() {
-    sudo -s -u $RUN_AS
+    # sudo -s -u $RUN_AS
     cd /home/$RUN_AS/hass
     . bin/activate
 }
