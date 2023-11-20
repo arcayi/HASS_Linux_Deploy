@@ -1,0 +1,1 @@
+nohup nanomq start >>nanomq.log 2>&1 &

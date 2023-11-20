@@ -51,3 +51,8 @@ ln -sf /home/android/HASS_Linux_Deploy/hass_daemon /etc/init.d/
 # https://github.com/hacs/integration/releases
 wget -O - https://get.hacs.xyz | bash -
 
+# [optional] 
+cd ~
+curl -s https://assets.emqx.com/scripts/install-nanomq-deb.sh | sudo bash
+sudo apt install --no-install-recommends nanomq
+nohup nanomq start >>nanomq.log 2>&1 &
