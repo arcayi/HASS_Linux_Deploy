@@ -15,11 +15,11 @@ PID_FILE="/run/hass.pid"
 
 CONFIG_DIR="/home/${RUN_AS}/.homeassistant"
 LOG_DIR="/var/log/homeassistant"
-LOG_FILE="$LOG_DIR/home-assistant.log"
-# FLAGS="-v --config $CONFIG_DIR --pid-file $PID_FILE --log-file $LOG_FILE --daemon"
-FLAGS="-v --config $CONFIG_DIR --log-file $LOG_FILE "
+LOG_FILE="${LOG_DIR}/home-assistant.log"
+# FLAGS="-v --config ${CONFIG_DIR} --pid-file ${PID_FILE} --log-file ${LOG_FILE} --daemon"
+FLAGS="-v --config ${CONFIG_DIR} --log-file ${LOG_FILE} "
 
-# CMD="$PRE_EXEC; $HASS_BIN $FLAGS"
+# CMD="${PRE_EXEC}; ${HASS_BIN} $FLAGS"
 
 . /lib/lsb/init-functions
 
@@ -30,9 +30,9 @@ venv() {
 }
 
 create_logdir() {
-    if [ ! -d "$LOG_DIR" ]; then
-        mkdir -p $LOG_DIR
-        chown ${RUN_AS} "$LOG_DIR"
+    if [ ! -d "${LOG_DIR}" ]; then
+        mkdir -p ${LOG_DIR}
+        chown ${RUN_AS} "${LOG_DIR}"
     fi
 }
 
@@ -41,13 +41,13 @@ case "$1" in
     start)
         venv
         create_logdir
-        # echo start-stop-daemon --start --pidfile $PID_FILE --exec $HASS_BIN -- $FLAGS 2>/dev/null
-        start-stop-daemon --start --pidfile $PID_FILE --name hass --chuid ${RUN_AS} \
+        # echo start-stop-daemon --start --pidfile ${PID_FILE} --exec ${HASS_BIN} -- ${FLAGS} 2>/dev/null
+        start-stop-daemon --start --pidfile ${PID_FILE} --name hass \
             --make-pidfile --background \
-            --exec $HASS_BIN -- $FLAGS 2>/dev/null
+            --exec ${HASS_BIN} -- ${FLAGS} 2>/dev/null
         ;;
     stop)
-        start-stop-daemon --stop --pidfile $PID_FILE --name hass --chuid ${RUN_AS} --retry=TERM/30/KILL/5 
+        start-stop-daemon --stop --pidfile ${PID_FILE} --name hass --retry=TERM/30/KILL/5 
         ;;
     restart)
         $0 stop
@@ -55,12 +55,12 @@ case "$1" in
         $0 start
         ;;
     status)
-        # start-stop-daemon --status --pidfile $PID_FILE --name hass
-        status_of_proc -p $PID_FILE hass "Home Assistant Service" && exit 0 || exit $?
+        # start-stop-daemon --status --pidfile ${PID_FILE} --name hass
+        status_of_proc -p ${PID_FILE} hass "Home Assistant Service" && exit 0 || exit $?
         ;;
     logs)
-        echo ">> log file: $LOG_FILE"
-        tail -f $LOG_FILE && exit 0 || exit $?
+        echo ">> log file: ${LOG_FILE}"
+        tail -f ${LOG_FILE} && exit 0 || exit $?
         ;;
     *)
         echo "Usage: $0 {start|stop|restart|logs}"
